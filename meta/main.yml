@@ -1,0 +1,10 @@
+galaxy_info:
+  author: Tom Hummel
+  description: opinionated caddy role which does a cloudflare dns challenge for tls certificates and forwards to a local port
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  galaxy_tags: []
+
+dependencies: []
