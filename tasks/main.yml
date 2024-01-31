@@ -37,7 +37,7 @@
       {
         email {{ caddy_tls_email }}
       }
-      {{ domain }} {
+      {{ caddy_domain }} {
         tls {
           dns {{ caddy_dns_provider }} {{ caddy_dns_api_token }}
         }

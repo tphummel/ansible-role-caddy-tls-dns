@@ -18,6 +18,7 @@ playbook.yml for forwarding to local port
       roles:
         - role: ansible-role-caddy-tls-dns
           vars:
+            caddy_domain: my-app.mydomain.com
             caddy_tls_email: "tls@mydomain.com"
             caddy_dns_api_token: "my-secret-token"
             caddy_target_port: "8181"
@@ -29,6 +30,7 @@ playbook.yml for serving a local path as a fileserver
       roles:
         - role: ansible-role-caddy-tls-dns
           vars:
+            caddy_domain: my-app.mydomain.com
             caddy_tls_email: "tls@mydomain.com"
             caddy_dns_api_token: "my-secret-token"
             caddy_target_path: "/var/www/html"
