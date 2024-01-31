@@ -1,7 +1,7 @@
 ---
 - name: Download Caddy package
   get_url:
-    url: {{ caddy_download_url }}
+    url: "{{ caddy_download_url }}"
     dest: "/usr/bin/caddy"
     mode: '0755'
 
