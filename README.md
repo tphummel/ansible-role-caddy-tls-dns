@@ -36,6 +36,19 @@ playbook.yml for serving a local path as a fileserver
             caddy_target_path: "/var/www/html"
 ```
 
+playbook.yml for multiple invocations of the role
+```
+- hosts: servers
+      roles:
+        - role: ansible-role-caddy-tls-dns
+          vars:
+            caddy_domain: my-app.mydomain.com
+            caddy_tls_email: "tls@mydomain.com"
+            caddy_dns_api_token: "my-secret-token"
+            caddy_target_port: "8888"
+            caddy_suffix: "two"
+```
+
 License
 -------
 

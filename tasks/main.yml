@@ -2,7 +2,7 @@
 - name: Download Caddy package
   get_url:
     url: "{{ caddy_download_url }}"
-    dest: "/usr/bin/caddy"
+    dest: "/usr/bin/caddy{{ '-' + caddy_suffix if caddy_suffix is defined else '' }}"
     mode: '0755'
 
 - name: Create group for Caddy
