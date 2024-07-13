@@ -36,6 +36,13 @@
     content: |
       {
         email {{ caddy_tls_email }}
+        
+        {% if caddy_enable_metrics == true %}
+        servers {
+          metrics
+        }
+        admin :2019
+        {% endif %}
       }
       {{ caddy_domain }} {
         tls {
