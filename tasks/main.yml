@@ -36,12 +36,11 @@
     content: |
       {
         email {{ caddy_tls_email }}
-        servers {
-          {% if caddy_enable_metrics == true %}
-          metrics
-          {% endif %}
-        }
+        
         {% if caddy_enable_metrics == true %}
+        servers {
+          metrics
+        }
         admin :2019
         {% endif %}
       }
