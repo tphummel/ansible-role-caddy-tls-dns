@@ -41,6 +41,9 @@
           metrics
           {% endif %}
         }
+        {% if caddy_enable_metrics == true %}
+        admin :2019
+        {% endif %}
       }
       {{ caddy_domain }} {
         tls {
