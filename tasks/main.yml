@@ -30,13 +30,22 @@
     - {path: '/var/www/html', owner: 'caddy', group: 'caddy'}
     - {path: '/var/lib/caddy', owner: 'caddy', group: 'caddy'}
 
+- name: Create log directory if access logging is enabled
+  file:
+    path: "{{ caddy_log_path | default('/var/log/caddy') }}"
+    state: directory
+    mode: '0755'
+    owner: caddy
+    group: caddy
+  when: caddy_enable_access_log | default(false)
+
 - name: Create Caddyfile with Cloudflare plugin
   copy:
     dest: /etc/caddy/Caddyfile
     content: |
       {
         email {{ caddy_tls_email }}
-        
+
         {% if caddy_enable_metrics == true %}
         servers {
           metrics
@@ -45,6 +54,16 @@
         {% endif %}
       }
       {{ caddy_domain }} {
+        {% if caddy_enable_access_log | default(false) %}
+        log {
+          output file {{ caddy_log_path | default('/var/log/caddy') }}/{{ caddy_domain }}-access.log {
+            roll_size {{ caddy_log_roll_size | default('100mb') }}
+            roll_keep_for {{ caddy_log_roll_keep_for | default('0') }}
+          }
+          format {{ caddy_log_format | default('json') }}
+        }
+        {% endif %}
+
         tls {
           dns {{ caddy_dns_provider }} {{ caddy_dns_api_token }}
         }
